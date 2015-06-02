@@ -89,7 +89,7 @@ header {
 	text-align: center;
 }
 .recorrido{
-	text-align:center;	
+	text-align:center;		
 }
 .recorrido ul {
 	position: relative;
@@ -135,13 +135,12 @@ header {
 	//padding-botton:4px;
 
 	//cursor: pointer;
-	//	opacity: .4;
+	//opacity: .4;
 
 	background-color: #000;
 
-	//vertical-align: center;    
 	//line-height: normal;
-
+	vertical-align:middle;
 }
 
 .pregunta {

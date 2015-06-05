@@ -17,24 +17,17 @@ var app = (function(){
 	var w=0;
 	var h=0;
 	var iniPadH=0.2;
-	var eligeF=0.3;
-	var sobreH100=0;
-	var sobreFactor = 0.45; 
-	var sobrePadF = 0.125;
+	var tarjeH100=0;
+	var tarjeFactor = 0.45; 
+	var tarjePadF = 0.05;
 	var punSize=0;
-	var factorDot=2;
+	var factorDot=1.5;
 
 	var optSize=0.18;
-	var urnaMinTop=0;
-	var urnaMaxTop=0;
 
-	var urna1FacH=0;
-	var urna2FacH=0;
-	var urna3FacH=0;
-	var urnasH=0;
-	var urnasHF=0;
+	var sobreFondoH=0;
+	var sobreFreDiff=50;	
 
-	var urnaAbajo = true;
 	var sigW=0.6;
 	var sHF=0.234;
 
@@ -67,17 +60,17 @@ var app = (function(){
 
 
 		// #Animación de aparición de las opciones de voto
-		/*$( "vSi" ).tween({
+		$( "#vSi" ).tween({
 			rotate:{
 				start: 0,
-				stop: 360,
+				stop: 355,
 				time: 0,
 				duration: 2,
 				effect:'easeInOut'
 			},
 			width:{
 				start: 1,
-				stop: h*sobreH100,
+				stop: h*tarjeH100,
 				time: 0,
 				units: 'px',
 				duration: 2,
@@ -85,26 +78,26 @@ var app = (function(){
 			},
 			height:{
 				start: 1,
-				stop: h*sobreH100,
+				stop: h*tarjeH100*0.9,
 				time: 0,
 				units: 'px',
 				duration: 2,
 				effect:'easeInOut'
 			}
-		});*/
+		});
 
-		//$( "#vNo" ).tween({
-		$( ".voto" ).tween({
+		$( "#vNo" ).tween({
+		//$( ".voto" ).tween({
 			rotate:{
 				start: 0,
-				stop: 360,
+				stop: 365,
 				time: 0,
 				duration: 2,
 				effect:'easeInOut'
 			},
 			width:{
 				start: 1,
-				stop: h*sobreH100,
+				stop: h*tarjeH100,
 				time: 0,
 				units: 'px',
 				duration: 2,
@@ -112,16 +105,15 @@ var app = (function(){
 			},
 			height:{
 				start: 1,
-				stop: h*sobreH100,
+				stop: h*tarjeH100*0.9,
 				time: 0,
 				units: 'px',
 				duration: 2,
 				effect:'easeInOut'
 			},
 			onStop: function( element ){
-				$(".elige").show();
-				$(".masOp").show();				
-				$(".nElec").show();
+				//$(".masOp").show();				
+				//$(".nElec").show();
 			}
 
 		});		
@@ -130,7 +122,7 @@ var app = (function(){
 		$( pun ).tween({
 			width:{
 				start: punSize,
-				stop: punSize*2,
+				stop: punSize*factorDot,
 				time: 0,
 				units: 'px',
 				duration: 1,
@@ -138,7 +130,7 @@ var app = (function(){
 			},
 			height:{
 				start: punSize,
-				stop: punSize*2,
+				stop: punSize*factorDot,
 				time: 0,
 				units: 'px',
 				duration: 1,
@@ -146,7 +138,7 @@ var app = (function(){
 			},
 			borderRadius:{
 				start: punSize,
-				stop: punSize*2,
+				stop: punSize*factorDot,
 				time: 0,
 				units: 'px',
 				duration: 1,
@@ -154,7 +146,7 @@ var app = (function(){
 			},				
 			backgroundColor:{
 				start: '#000',
-				stop: '#FFF',
+				stop: '#20a685',
 				time: 0,
 				duration: 1,
 				effect:'easeInOut'
@@ -228,67 +220,7 @@ var app = (function(){
 
 	// #Animación muestra el resultado a partir del voto elegido
 	function pregResult(){
-		$( ".urna1" ).tween({
-			top:{
-				start: urnaMinTop,
-				stop: urnaMaxTop,
-				time: 0,
-				units: 'px',
-				duration: 2,
-				effect:'easeInOut'
-			},
-			height:{
-				start: urnasH*urna1FacH,
-				stop: (h-urnaMaxTop)*urna1FacH*0.1,
-				time: 0,
-				units: 'px',
-				duration: 2,
-				effect:'easeInOut'
-			}			
-		});
-		$( ".urna2" ).tween({
-			top:{
-				start: parseFloat($(".urna2").css("top")),
-				stop: urnaMaxTop+(h-urnaMaxTop)*urna1FacH*0.1,
-				time: 0,
-				units: 'px',
-				duration: 2,
-				effect:'easeInOut'
-			},
-			height:{
-				start: urnasH*urna2FacH,
-				stop: (h-urnaMaxTop)*urna2FacH*0.1,
-				time: 0,
-				units: 'px',
-				duration: 2,
-				effect:'easeInOut'
-			}			
-		});
-		$( ".urna3" ).tween({
-			top:{
-				start: parseFloat($(".urna3").css("top")),
-				stop: urnaMaxTop+(h-urnaMaxTop)*urna1FacH*0.1+(h-urnaMaxTop)*urna2FacH*0.1,
-				time: 0,
-				units: 'px',
-				duration: 2,
-				effect:'easeInOut'
-			},
-			height:{
-				start: urnasH*urna3FacH,
-				stop: (h-urnaMaxTop)*urna3FacH+(h-urnaMaxTop)*urna1FacH*0.9+(h-urnaMaxTop)*urna2FacH*0.9,
-				time: 0,
-				units: 'px',
-				duration: 2,
-				effect:'easeInOut'
-			},	
-			onStop: function( element ){
-				$(".sigue").show();
-				$(".nElec").hide();
-			}
-		});
-
-		$.play();
-		urnaAbajo = false;			
+					
 	}
 
 	return {//funcion de inicio de la aplicación
@@ -303,8 +235,8 @@ var app = (function(){
 
 			$("#inicio").css("padding-top",h*iniPadH+"px");
 			$("#inicio").css("padding-bottom",h*iniPadH+"px");;
-			$("#sobre1").css("padding-top",h*sobrePadF+"px");
-			$("#sobre2").css("padding-top",h*sobrePadF+"px");
+			$("#tarjeta1").css("padding-top",h*tarjePadF+"px");
+			$("#tarjeta2").css("padding-top",h*tarjePadF+"px");
 
 			// Listener por resize de la ventana
 			window.addEventListener("resize", function() {
@@ -318,44 +250,25 @@ var app = (function(){
 				$("#game").css("height",h+"px");
 				$("#inicio").css("padding-top",h*iniPadH+"px");
 				$("#inicio").css("padding-bottom",h*iniPadH+"px");
-				$( ".elige" ).css("top",(eligeF*h)+"px");
 
-				sobreH100 = sobreFactor*parseFloat($("#sobre1").css("height"))/h;
-				$("#sobre1").css("padding-top",h*sobrePadF);
-				$("#sobre2").css("padding-top",h*sobrePadF);
+				tarjeH100 = tarjeFactor*parseFloat($("#tarjeta1").css("height"))/h;
+				$("#tarjeta1").css("padding-top",h*tarjePadF);
+				$("#tarjeta2").css("padding-top",h*tarjePadF);
 
 				//console.log(w);
-				$( "#vSi" ).css("width",(sobreH100*h)+"px");
-				$( "#vSi" ).css("height",(sobreH100*h)+"px");
-				$( "#vNo" ).css("width",(sobreH100*h)+"px");
-				$( "#vNo" ).css("height",(sobreH100*h)+"px");
+				$( "#vSi" ).css("width",(tarjeH100*h)+"px");
+				$( "#vSi" ).css("height",(tarjeH100*h*0.9)+"px");
+				$( "#vNo" ).css("width",(tarjeH100*h)+"px");
+				$( "#vNo" ).css("height",(tarjeH100*h*0.9)+"px");
 				$( ".masOp" ).css("width",(optSize*h)+"px");
 				$( ".masOp" ).css("height",(optSize*h)+"px");
 				$( ".masOp" ).css("left",(w*0.5)-((optSize*h)*0.5)+"px");
 				//$( ".tPreg" ).css("font-size",w*0.003+"em");
 				//$( ".tPreg" ).css("font-size",(1+w*0.0005)+"em")
 				$(".dots").css("margin-right",w*0.02+"px");
-				urnaMaxTop = parseFloat($("#encabezado").css("height"));
-				urnasH = h*urnasHF;
-				urnaMinTop = h-urnasH;
-				if(urnaAbajo){
-					$( ".urna1" ).css("top",urnaMinTop+"px");
-					$( ".urna1" ).css("height",(urnasH*urna1FacH)+"px");
-					$( ".urna2" ).css("top",(urnaMinTop+urnasH*urna1FacH)+"px");
-					$( ".urna2" ).css("height",(urnasH*urna2FacH)+"px");
-					$( ".urna3" ).css("top",(urnaMinTop+urnasH*(urna1FacH+urna2FacH))+"px");
-					$( ".urna3" ).css("height",(urnasH*urna3FacH)+"px");
-				}else{
-					var nh = h-urnaMaxTop;
-					$( ".urna1" ).css("top",urnaMaxTop+"px");
-					$( ".urna1" ).css("height",(nh*urna1FacH*0.1)+"px");
-					$( ".urna2" ).css("top",(urnaMaxTop+nh*urna1FacH*0.1)+"px");
-					$( ".urna2" ).css("height",(nh*urna2FacH*0.1)+"px");
-					$( ".urna3" ).css("top",(urnaMaxTop+(nh*urna1FacH*0.1)+(nh*urna2FacH*0.1))+"px");
-					$( ".urna3" ).css("height",(nh*urna3FacH+nh*urna1FacH*0.9+(nh)*urna2FacH*0.9)+"px");
-				}
+				
 
-				var sW = parseFloat($(".urna1").css("width"))*sigW;	
+				var sW = parseFloat($(".sobreFrente").css("width"))*sigW;	
 				$(".sigue").css("width",sW+"px");
 				$(".sigue").css("left",((w*0.5)-(sW*0.5))+"px");
 				var sH = sW*sHF;
@@ -364,31 +277,26 @@ var app = (function(){
 
 			}, false);
 
-			sobreH100 = sobreFactor*parseFloat($("#sobre1").css("height"))/h;
-			$( "#vSi" ).css("width",(sobreH100*h)+"px");
-			$( "#vSi" ).css("height",(sobreH100*h)+"px");
-			$( "#vNo" ).css("width",(sobreH100*h)+"px");
-			$( "#vNo" ).css("height",(sobreH100*h)+"px");
 			punSize = parseFloat($(".dots").css("height"));
 			optSize = parseFloat($(".masOp").css("height"))/h;
+
+			tarjeH100 = tarjeFactor*parseFloat($("#tarjeta1").css("height"))/h;
+			$( "#vSi" ).css("width",(tarjeH100*h)+"px");
+			$( "#vSi" ).css("height",(tarjeH100*h)+"px");
+			$( "#vNo" ).css("width",(tarjeH100*h)+"px");
+			$( "#vNo" ).css("height",(tarjeH100*h)+"px");
+
+			sobreFondoH = parseFloat($(".sobreFondo").css("top"));
+			$(".sobreFrente").css("top",(sobreFondoH+sobreFreDiff)+"px");
+			$(".sobreChicos").css("top",(sobreFondoH+sobreFreDiff)+"px");
+
+			
 			$( ".masOp" ).css("width",(optSize*h)+"px");
 			$( ".masOp" ).css("height",(optSize*h)+"px");
 			$( ".masOp" ).css("left",(w*0.5)-((optSize*h)*0.5)+"px");
 
-			urnaMaxTop = parseFloat($("#encabezado").css("height"));
-			urnaMinTop = parseFloat($(".urna1").css("top"));
 
-			urnasH = parseFloat($(".urna1").css("height"))+parseFloat($(".urna2").css("height"))+parseFloat($(".urna3").css("height"));
-
-			urnasHF = urnasH/h;
-			//console.log("urnasH: "+urnasH);
-			//console.log("urnasHF: "+urnasHF);
-
-			urna1FacH = parseFloat($(".urna1").css("height"))/urnasH;
-			urna2FacH = parseFloat($(".urna2").css("height"))/urnasH;
-			urna3FacH = parseFloat($(".urna3").css("height"))/urnasH;
-
-			var sW = parseFloat($(".urna1").css("width"))*sigW;	
+			var sW = parseFloat($(".sobreFrente").css("width"))*sigW;	
 			$(".sigue").css("width",sW+"px");
 			$(".sigue").css("left",((w*0.5)-(sW*0.5))+"px");
 			var sH = sW*sHF;
@@ -400,69 +308,9 @@ var app = (function(){
 
 			game.hide();
 			$(".sigue").hide();
-			$(".elige").hide();
 			$(".masOp").hide();
 			$(".sigue").click(function() {
-
-				$( ".urna1" ).tween({
-					top:{
-						start: urnaMaxTop,
-					stop: urnaMinTop,
-					time: 0,
-					units: 'px',
-					duration: 2,
-					effect:'easeInOut'
-					},
-					height:{
-						start:(h-urnaMaxTop)*urna1FacH*0.1,					
-					stop: urnasH*urna1FacH,
-					time: 0,
-					units: 'px',
-					duration: 2,
-					effect:'easeInOut'
-					}			
-				});
-
-				$( ".urna2" ).tween({
-					top:{
-						start: urnaMaxTop+(h-urnaMaxTop)*urna1FacH*0.1,
-					stop:  urnaMinTop+urnasH*urna1FacH,
-					time: 0,
-					units: 'px',
-					duration: 2,
-					effect:'easeInOut'
-					},
-					height:{
-						start:  (h-urnaMaxTop)*urna2FacH*0.1,
-					stop: urnasH*urna2FacH,
-					time: 0,
-					units: 'px',
-					duration: 2,
-					effect:'easeInOut'
-					}			
-				});
-
-
-				$( ".urna3" ).tween({
-					top:{
-						start:  urnaMaxTop+(h-urnaMaxTop)*urna1FacH*0.1+(h-urnaMaxTop)*urna2FacH*0.1,
-					stop: urnaMinTop+urnasH*urna1FacH+urnasH*urna2FacH,
-					time: 0,
-					units: 'px',
-					duration: 2,
-					effect:'easeInOut'
-					},
-					height:{
-						start:(h-urnaMaxTop)*urna3FacH+(h-urnaMaxTop)*urna1FacH*0.9+(h-urnaMaxTop)*urna2FacH*0.9,
-					stop: urnasH*urna3FacH,
-					time: 0,
-					units: 'px',
-					duration: 2,
-					effect:'easeInOut'
-					},
-
-				});
-				urnaAbajo = true;
+				
 				$("#vSi").show();
 				$("#vNo").show();
 				nextQuest(id);
@@ -514,13 +362,12 @@ var app = (function(){
 			$("#vSi").click(function() {
 				if(!animando){
 					animando=true;
-					$(".elige").hide();
 					$(".masOp").hide();
 
 					var offset = $("#vSi").offset();
-					offset.top = parseFloat($("#sobre1").css("padding-top"));
+					offset.top = parseFloat($("#tarjeta1").css("padding-top"));
 
-					var offUrna = $(".urna2").offset();
+					var offUrna = $(".sobreChicos").offset();
 
 					$("#vSi").css("position","absolute");
 					$("#vSi").css("zIndex","2");
@@ -591,12 +438,11 @@ var app = (function(){
 			$("#vNo").click(function() {
 				if(!animando){
 					animando=true;
-					$(".elige").hide();
 					$(".masOp").hide();
 					var offset = $("#vNo").offset();
 					offset.left =parseFloat($("#vNo").css("padding-left"));
-					offset.top = parseFloat($("#sobre1").css("padding-top"));
-					var offUrna = $(".urna2").offset();
+					offset.top = parseFloat($("#tarjeta1").css("padding-top"));
+					var offUrna = $(".sobreChicos").offset();
 					//console.log(offset.top);					
 					//console.log(offset.left);
 

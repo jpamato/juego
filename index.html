@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -35,18 +35,18 @@
 			</ul>
 		</div><!--/.nav-collapse -->
 			</div>
-</nav>
+		</nav>-->
 <div id=inicio>
 	<div class="row">
-		<img src="img/inicio.jpg" class='imgInicio' >
+		<img src="img/YQSlogo.jpg" class='imgInicio' >
 	</div>
+	<div class="row"></br></div>
 	<div class="row">
-		<h1 class="iniT">&#191;A qui&#233;n voto?</h1>
 		<div class="col-xs-1 col-md-4">
 		</div>
 		<div class="col-xs-10 col-md-4">
 
-			<h4 class="invita">&#191;Quer&#233;s enterarte con cu&#225;l candidato ten&#233;s m&#225;s afinidad para las pr&#243;ximas elecciones a<br/><br/>
+			<h4 class="invita">&#191;Con  cu&#225;l candidato tengo</br>m&#225;s afinidad<br/><br/>
 				<select name="elecci&#243;n" id="eleccion">
 				</select>
 				?</h4><br/>
@@ -54,13 +54,16 @@
 		<div class="col-xs-1 col-md-4">
 		</div>
 	</div>
+	<div class="row"></div>
 	<div class="row">
-		<button type="button" class="bJugar"></button>        
+		<button type="button" class="bJugar">
+		<span style="font-size:1.5em;vertical-align:middle;">Empezar</span>
+		<span style="font-size:3em; vertical-align:middle;"><b>&#20;&#20;>></b></span>
+	</button>        
 	</div>
 </div>
 
 <div id=game>
-	
 
 	<div class="row" id="encabezado">
 		<div class="recorrido">
@@ -82,29 +85,29 @@
 				<!--	</div> -->
 		</div>
 	</div>
-	<div class="elige"><h5 class="tElige">Elige tu voto</h5></div>
 	<section>
 		
-			<div class="col-xs-6 col-md-6" id="sobre1" style="text-align:right"><button type="button" class='voto' id="vSi" alt="Si" ></button></div>
-			<div class="col-xs-6 col-md-6" id="sobre2" style="text-align:left"><button type="button" class='voto' id="vNo" alt="No" ></button></div>
+			<div class="col-xs-6 col-md-6" id="tarjeta1" style="text-align:right"><button type="button" class='voto' id="vSi" alt="Si" >SI</button></div>
+			<div class="col-xs-6 col-md-6" id="tarjeta2" style="text-align:left"><button type="button" class='voto' id="vNo" alt="No" >NO</button></div>
 	
 		<div class="masOp"><button type="button" class="bMasO"></button></div>
 	</section>
 
 	<!--<footer -->
-		<div class="urna1" style="text-align:center;z-index:1">
-			<img src="img/urnaTop1.png" width="100%" height="100%">
+		<div class="sobreFondo" style="text-align:center;z-index:1">
+			<img src="img/sobre_fondo.png" width="100%" height="100%">
+			<!--<div class="posturas">
+				<h3 class="nElec"></h3>
+			</div>-->
 		</div>
-		<div class="urna2" style="text-align:center;z-index:100">
-			<img src="img/urnaTop2.png" width="100%" height="100%">
+		<div class="sobreFrente" style="text-align:center;z-index:3">
+			<img src="img/sobre_frente.png" width="100%" height="100%">
+		</div>
+		<div class="sobreChicos" style="text-align:center;z-index:2">
+			<img src="img/sobresChicos.png" width="100%" height="100%">
 
 		</div>
-		<div class="urna3" style="text-align:center;z-index:100">
-			<img src="img/urnaBottom.png" width="100%" height="100%">
-			<div class="posturas">
-				<h3 class="nElec"></h3>
-			</div>
-		</div>
+		
 		<div class="sigue"><button type="button" class="bSig"></button></div>
 		<!--	</footer> -->
 
